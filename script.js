@@ -118,7 +118,8 @@ $(document).ready(function() {
     }
 
     function getValueClass(value, level) {
-        return "<td class='" + level.toLowerCase() + "'>" + value + "</td>";
+        if (value === 'NaN') return "<td class='undefined'></td>"
+        return "<td class='" + level.toLowerCase() + "'>" + roundTo(value) + "</td>";
     }
 
     function validateEmail(email) {
@@ -142,6 +143,10 @@ $(document).ready(function() {
     function showSubscriptionMessage() {
         $('.msg').fadeToggle(200);
         $('.message').toggleClass('message_shown');
+    }
+
+    function roundTo(num) {
+        return + (Math.round(num + "e+3")  + "e-3");
     }
 
     $('#ok_button').click(function(){showSubscriptionMessage()});
